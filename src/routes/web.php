@@ -59,4 +59,7 @@ Route::get('article/{n}', 'ArticleController@show')->where('n', '[0-9]+');
 Route::get('contact', 'ContactController@show');
 Route::post('contact', 'ContactController@create');
 
+Route::get('photo', 'PhotoController@show');
+Route::post('photo', 'PhotoController@create');
+
 //$this->app['router']->get('/foo', fn () => 'foo'); // Not work as app is undefined
