@@ -34,4 +34,29 @@ Route::get('/bar/{n}/{f}/{b}', [
         ->withSecondArg($f)
 ]);
 
+Route::get('facture/{n}', [
+    'as' => 'facture',
+    fn ($n) => view('facture', ['numero' => $n])
+]);
+
+Route::get('facture2/{n}', [
+    'as' => 'facture2',
+    fn ($n) => redirect()->route('facture', ['n' => $n])
+]);
+
+Route::get('article1/{n}', [
+    'as' => 'article',
+    fn ($n) => view('article', ['numero' => $n])
+]);
+
+Route::get('welcome', [
+    'uses' => 'WelcomeController@index',
+    'as' => 'welcome'
+]);
+
+Route::get('article/{n}', 'ArticleController@show')->where('n', '[0-9]+');
+
+Route::get('contact', 'ContactController@show');
+Route::post('contact', 'ContactController@create');
+
 //$this->app['router']->get('/foo', fn () => 'foo'); // Not work as app is undefined

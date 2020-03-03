@@ -67,6 +67,7 @@ services:
     entrypoint: ['npm']
 
   artisan:
+    user: ${USER_ID}
     build:
       context: .
       dockerfile: Dockerfile
