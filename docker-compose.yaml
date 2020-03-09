@@ -1,7 +1,15 @@
-version: '3'
+version: '3.4'
 
 networks:
   laravel:
+
+
+x-database-information: &database-info
+  MYSQL_DATABASE: homestead
+  MYSQL_USER: homestead
+  MYSQL_PASSWORD: secret
+  MYSQL_ROOT_PASSWORD: secret
+
 
 services:
   nginx:
@@ -26,10 +34,7 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MYSQL_DATABASE: homestead
-      MYSQL_USER: homestead
-      MYSQL_PASSWORD: secret
-      MYSQL_ROOT_PASSWORD: secret
+      <<: *database-info
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     networks:

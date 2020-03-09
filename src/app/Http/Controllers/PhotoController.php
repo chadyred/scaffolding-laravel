@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Gestion\PhotoGestionInterface;
 use App\Http\Requests\ImageRequest;
 
 class PhotoController extends Controller
@@ -12,21 +13,17 @@ class PhotoController extends Controller
         return view('photo/show');
     }
 
-    public function create(ImageRequest $request)
+    public function create(
+        ImageRequest $request,
+        PhotoGestionInterface $photoGestion
+    )
     {
         $image = $request->file('image');
 
-        if($image->isValid())
-        {
-            $chemin = config('image.path');
+        if($image->isValid()) {
+            $done = $photoGestion($image);
 
-            $extension = $image->getClientOriginalExtension();
-
-            do {
-                $nom = uniqid() . '.' . $extension;
-            } while(file_exists($chemin . '/' . $nom));
-
-            if($image->move($chemin, $nom)) {
+            if ($done) {
                 return view('photo/confirm');
             }
         }

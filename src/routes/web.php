@@ -62,4 +62,12 @@ Route::post('contact', 'ContactController@create');
 Route::get('photo', 'PhotoController@show');
 Route::post('photo', 'PhotoController@create');
 
+Route::get('register', 'RegisterController@getForm');
+Route::post('register', [
+    'uses' => 'RegisterController@postForm',
+    'as' => 'register_post'
+]);
+
+Route::resource('user', 'UserRessourceController');
+
 //$this->app['router']->get('/foo', fn () => 'foo'); // Not work as app is undefined

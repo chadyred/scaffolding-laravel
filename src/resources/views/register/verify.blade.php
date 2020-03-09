@@ -1,0 +1,13 @@
+@extends('register/template')
+
+@section('content')
+    <br>
+    <div class="col-sm-offset-3 col-sm-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">Inscription à la lettre d'information</div>
+            <div class="panel-body">
+                Veuillez vérifier votre compte avec le mail fourni : "{{ $email }}"
+            </div>
+        </div>
+    </div>
+@endsection
